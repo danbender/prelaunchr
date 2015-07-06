@@ -1,0 +1,50 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+
+ /**
+ * @license
+ * MyFonts Webfont Build ID 2948020, 2015-01-06T06:31:06-0500
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: DarwinAlt-Light by Los Andes
+ * URL: http://www.myfonts.com/fonts/los-andes/darwin/alt-light/
+ *
+ * Webfont: DarwinAlt-Black by Los Andes
+ * URL: http://www.myfonts.com/fonts/los-andes/darwin/alt-black/
+ *
+ *
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2948020
+ * Licensed pageviews: 100,000
+ * Webfonts copyright: Copyright (c) 2014 by MendozaVergara. All rights reserved.
+ *
+ * © 2015 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/2cfbb4");
+
+
+@font-face {font-family: 'DarwinAlt-Light';src: url('/fonts/2CFBB4_0_0.eot');src: url('/fonts/2CFBB4_0_0.eot?#iefix') format('embedded-opentype'),url('/fonts/2CFBB4_0_0.woff2') format('woff2'),url('/fonts/2CFBB4_0_0.woff') format('woff'),url('/fonts/2CFBB4_0_0.ttf') format('truetype'),url('/fonts/2CFBB4_0_0.svg#wf') format('svg');}
+
+
+@font-face {font-family: 'DarwinAlt-Black';src: url('/fonts/2CFBB4_1_0.eot');src: url('/fonts/2CFBB4_1_0.eot?#iefix') format('embedded-opentype'),url('/fonts/2CFBB4_1_0.woff2') format('woff2'),url('/fonts/2CFBB4_1_0.woff') format('woff'),url('/fonts/2CFBB4_1_0.ttf') format('truetype'),url('/fonts/2CFBB4_1_0.svg#wf') format('svg');}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);

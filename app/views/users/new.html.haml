@@ -1,0 +1,66 @@
+%main#main.inner-page{:role => "main"}
+  .column{id: 'step-subscribe'}
+    %h1 Dein Wochenmarkt im Internet
+    %p Einzigartige Produkte von Herstellern aus deiner Region. Die Lieferung erfolgt direkt bis an die Haustür.
+    = form_for(@user, remote: false,  html: { class: 'form' }) do |f|
+      %fieldset
+        %label.text-inf{:for => "txt"} Empfiehl deine Freunde und bekomme einen Gutschein für die erste Bestellung:
+        .input-holder
+          %input#txt.input-text{:placeholder => "E-Mail", :type => "email", :name => 'user[email]'}/
+        .input-holder
+          %button.btn-submit{:type => "submit", id: 'submit-subscribe-submit'}
+            %span
+              %i.icon-bell.fa.fa-bell>
+              Sag mir Bescheid
+
+  .column{id: 'step-vote', style: 'display: none;'}
+    %h1 Danke!
+    %p{style: 'margin-bottom: 20px;'}
+      Soll Bonativo auch zu dir kommen?
+      %br/
+      Teile uns deine PLZ mit:
+    = form_for @user, :url => { :action => "create" } do |f|
+      %fieldset
+        .input-holder
+          %input.input-text{:type => "hidden", :name => 'user[email]', id: 'input-vote-email'}
+          %input#txt.input-text{:placeholder => "PLZ oder Ort", :type => "text", :name => 'user[vote_location]', id: 'input-vote-location'}
+        .input-holder
+          %button.btn-submit{:type => "submit", id: 'vote-submit-button'}
+            %span{id: 'submit-vote'}
+              %i.fa.fa-thumbs-o-up>
+              Vote
+            %span{id: 'span-ok', style: 'display: none; font-size: 20px;'}
+              %i.fa.fa-check
+
+
+  %aside.aside
+    .box
+      .img-hold
+        = image_tag "img-04.png"
+      .text
+        %h2
+          %a{:href => "#"}
+            %strong 1.
+            Entdecke Lebensmittel
+            %strong aus deiner Region.
+        %p Entdecke Landwirte und ihre Geschichten. Entdecke handverlesene Lebensmittel. <br /> Alles aus deiner Region.
+    .box
+      .img-hold
+        = image_tag "img-05.png"
+      .text
+        %h2
+          %a{:href => "#"}
+            %strong 2.
+            Lokale Partner
+            %strong produzieren für dich.
+        %p Du bekommst frische und handgemachte Lebensmittel von Herstellern, die du ausgewählt hast.
+    .box
+      .img-hold
+        = image_tag "img-06.png"
+      .text
+        %h2
+          %a{:href => "#"}
+            %strong 3.
+            Wir liefern direkt zu dir
+            %strong  nach Hause.
+        %p Wir liefern deine frischen Lebensmittel bis an deine Haustür - den Zeitpunkt bestimmst du.

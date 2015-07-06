@@ -1,0 +1,78 @@
+<div class="hero">
+    <div class="page-content clearfix">
+        <div class="mammoth">
+            <span class="need brandon">Danke!</span>
+        </div>
+        <div class="share-wrap" style='display: block !important'>
+            <p class="why brandon">Gemeinsam isst man am Schönsten!</p>
+            <p class="title brandon">LADE DEINE FREUNDE EIN FÜR EIN DANKESCHÖN</p>
+            <p class="subtitle brandon">Teile den untenstehenden Link mit deinen Freunden und bekomme von uns ein kleines Geschenk<br> bei deiner ersten Bestellung.</p>
+            <div class="copy-link brandon"><%= root_url %>?ref=<%= @user.referral_code %></div>
+            <% twitter_message = "Der Wochenmarkt kommt online mit @bonativo" %>
+            <div class="social-links">
+                <a href="http://www.facebook.com/sharer/sharer.php?u=<%= CGI::escape(root_url) %>?ref=<%= CGI::escape(@user.referral_code) %>&title=Bonativo" class="fb" target="_blank"><i class="fa fa-facebook"></i></a>
+            <!-- <div class="sep"></div> -->
+                <a href="http://twitter.com/share?url=<%= CGI::escape(root_url) %>?ref=<%= CGI::escape(@user.referral_code) %>&text=<%= CGI::escape(twitter_message) %>" class="twit" target="_blank"><i class="fa fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%
+    referrals_count = @user.referrals.count
+
+    stops = User::REFERRAL_STEPS
+
+    found = nil
+
+    stops.reverse_each { |stop|
+        if stop["count"] <= referrals_count and !found
+            stop["selected"] = true
+            found = stop
+        else
+            stop["selected"] = false
+        end
+    }
+ %>
+<div class="prizes <% if found %>prize-<%= found["class"] %><% end %>">
+    <div class="page-content">
+        <p class="callout brandon">So funktioniert es:</p>
+        <ul class="products clearfix">
+            <li class="title brandon mobile_hidden"><p class="friends">Beigetreten:</p><p class="rewards"></p></li>
+            <% stops.each do |stop| %>
+                <li class="product brandon <% if stop["selected"] %>selected<% end %> <% if stop["class"] == 'five' %>last<% end %>">
+                    <p class="friends mobile_shown">Friends Joined</p>
+                    <div class="circle"><%= stop["count"] %></div>
+                    <div class="sep"></div>
+                    <p class="rewards mobile_shown">Bonativo</p>
+                    <p><%= stop["html"].html_safe %></p>
+                </li>
+            <% end %>
+        </ul>
+
+        <div class="progress">
+            <div class="mover">
+                <div class="bar clearfix"></div>
+            </div>
+        </div>
+
+        <%
+            words = ''
+            if referrals_count == 1
+                words = 'Freund ist'
+            elsif
+                words = 'Freunde sind'
+            end
+
+        %>
+        <div class='current_status mobile_shown'>
+            Current status:
+        </div>
+
+        <% if referrals_count == 0 %>
+            <p class="place brandon">Noch sind <span style="font-weight:bold;">keine</span> deiner Freunde deiner Einladung gefolgt!</p>
+        <% else %>
+            <p class="place brandon"><span><%= referrals_count %></span> <%= words %> dabei!</p>
+        <% end %>
+    </div>
+</div>

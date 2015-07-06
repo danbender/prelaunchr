@@ -1,0 +1,110 @@
+!!!
+%html
+  %head
+    %title Bonativo - Dein Wochenmarkt im Internet
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    = csrf_meta_tags
+    <meta name="description" content="Bonativo ist dein Wochenmarkt online. Einzigartige Produkte von Herstellern aus Deiner Region.">
+    = stylesheet_link_tag 'application', media: 'all'
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="image_src" href="http://bonativo.de/assets/logo-07a8e8e576dd42f2be3e1d217c9faed8.png"/>
+
+  %body{:id => @bodyId ? @bodyId : "" }
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TNGCXV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','rockVarSet','GTM-P68VDW');</script>
+
+    %header#header
+      .img-hold#logo-hold
+        = image_tag "logo.png"
+    #wrapper
+
+      = yield
+
+      %footer#footer
+        .txt
+          %span Hast du Fragen?
+          %a.mail{:href => "mailto:launch@bonativo.de"}
+            %i.fa.fa-envelope
+            launch@bonativo.de
+
+          %a.link#impressum-open{:href => "#modal-one"} Impressum
+
+        .copy
+          %p © 2014-2015 Jade 1374 GmbH. Alle Rechte vorbehalten.
+
+      = javascript_include_tag 'application'
+
+
+/ Impressum Modal
+#modal-one.modal{"aria-hidden" => "true"}
+  .modal-dialog
+    .modal-header
+      %h2 Impressum
+
+    .modal-body
+      %span
+        %strong Jade 1374. GmbH
+        %br
+        Johannisstr. 20 10117 Berlin
+      %br
+      %br.not-mobile
+      %span
+        %strong Geschäftsführer:
+        Christian Eggert
+      %br
+      %span
+        %strong Kontakt:
+        %a.mail{:href => "mailto:launch@bonativo.de"}
+          %i.fa.fa-envelope
+          launch@bonativo.de
+      %br
+      %br.not-mobile
+      %span
+        Eingetragen beim Amtsgericht Berlin Charlottenburg, HRB 154764B
+        %br
+        Umsatzsteuer-Identifikationsnummer nach § 27a Umsatzsteuergesetz: DE283789063
+        %br
+        %br
+        #impressum
+          %strong
+          Disclaimer – rechtliche Hinweise
+          %br
+          § 1 Haftungsbeschränkung
+          %br
+          Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt erstellt. Der Anbieter übernimmt jedoch keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte. Die Nutzung der Inhalte der Website erfolgt auf eigene Gefahr des Nutzers. Namentlich gekennzeichnete Beiträge geben die Meinung des jeweiligen Autors und nicht immer die Meinung des Anbieters wieder. Mit der reinen Nutzung der Website des Anbieters kommt keinerlei Vertragsverhältnis zwischen dem Nutzer und dem Anbieter zustande.
+          %br
+          § 2 Externe Links
+          %br
+          Diese Website enthält Verknüpfungen zu Websites Dritter ("externe Links"). Diese Websites unterliegen der Haftung der jeweiligen Betreiber. Der Anbieter hat bei der erstmaligen Verknüpfung der externen Links die fremden Inhalte daraufhin überprüft, ob etwaige Rechtsverstöße bestehen. Zu dem Zeitpunkt waren keine Rechtsverstöße ersichtlich. Der Anbieter hat keinerlei Einfluss auf die aktuelle und zukünftige Gestaltung und auf die Inhalte der verknüpften Seiten. Das Setzen von externen Links bedeutet nicht, dass sich der Anbieter die hinter dem Verweis oder Link liegenden Inhalte zu Eigen macht. Eine ständige Kontrolle der externen Links ist für den Anbieter ohne konkrete Hinweise auf Rechtsverstöße nicht zumutbar. Bei Kenntnis von Rechtsverstößen werden jedoch derartige externe Links unverzüglich gelöscht.
+          %br
+          § 3 Urheber- und Leistungsschutzrechte
+          %br
+          Die auf dieser Website veröffentlichten Inhalte unterliegen dem deutschen Urheber- und Leistungsschutzrecht. Jede vom deutschen Urheber- und Leistungsschutzrecht nicht zugelassene Verwertung bedarf der vorherigen schriftlichen Zustimmung des Anbieters oder jeweiligen Rechteinhabers. Dies gilt insbesondere für Vervielfältigung, Bearbeitung, Übersetzung, Einspeicherung, Verarbeitung bzw. Wiedergabe von Inhalten in Datenbanken oder anderen elektronischen Medien und Systemen. Inhalte und Rechte Dritter sind dabei als solche gekennzeichnet. Die unerlaubte Vervielfältigung oder Weitergabe einzelner Inhalte oder kompletter Seiten ist nicht gestattet und strafbar. Lediglich die Herstellung von Kopien und Downloads für den persönlichen, privaten und nicht kommerziellen Gebrauch ist erlaubt.
+          %br
+          Die Darstellung dieser Website in fremden Frames ist nur mit schriftlicher Erlaubnis zulässig.
+          %br
+          § 4 Besondere Nutzungsbedingungen
+          %br
+          Soweit besondere Bedingungen für einzelne Nutzungen dieser Website von den vorgenannten Paragraphen abweichen, wird an entsprechender Stelle ausdrücklich darauf hingewiesen. In diesem Falle gelten im jeweiligen Einzelfall die besonderen Nutzungsbedingungen.
+
+      %a.modal-close.link{"aria-hidden" => "true", :href => "#"} ×
+
+      :javascript
+        $( "#new_subscriber" ).submit(function( event ) {
+          $('#submit-subscribe-submit').hide();
+          $('#submit-subscribe-wait').show();
+          $('#submit-subscribe-wait').attr('disabled','disabled');
+        });
+
+        $('#impressum-open').on('click',function() {
+          $("body").addClass("modal-open");
+          console.log('hello')
+        })
+
+        $('.modal-close').on('click',function() {
+          $("body").removeClass("modal-open");
+          console.log('ciao')
+        });
